@@ -34,14 +34,10 @@ module.exports = (app) => {
     );
   });
 
-  app.get("/callback", function (req, res) {
-    // your application requests refresh and access tokens
-    // after checking the state parameter
-
+  app.get("/callback", function (req, res){
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
-
     if (state === null || state !== storedState) {
       res.redirect(
         "/#" +
@@ -61,11 +57,10 @@ module.exports = (app) => {
         headers: {
           Authorization:
             "Basic " +
-            new Buffer(client_id + ":" + client_secret).toString("base64"),
+            new Buffer.from(client_id + ":" + client_secret).toString("base64"),
         },
         json: true,
       };
-
       request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           var access_token = body.access_token,
@@ -77,7 +72,6 @@ module.exports = (app) => {
             json: true,
           };
 
-          // use the access token to access the Spotify Web API
           request.get(options, async function (error, response, body) {
             // we can also pass the token to the browser to make requests from there
             console.log(error, response, body);
@@ -87,7 +81,7 @@ module.exports = (app) => {
                   token: access_token,
                   refresh_token: refresh_token,
                 })
-            );
+            )
           });
         } else {
           res.redirect(

@@ -1,11 +1,10 @@
 # spotify-auth-bff
 
 ## 👋 Welcome to spotify-auth-bff
+
 This application made in node + express.js aims to authenticate to Spotify services, see the API documentation here: [Spotify Developer Documentation]('https://developer.spotify.com/documentation/')
 
-
 ### Initial setup
-
 
 First fork this application on your github. in sequence clone your repository example:
 
@@ -14,7 +13,6 @@ git clone https://github.com/ArielBetti/spotify-auth-bff
 ```
 
 Set the environment variables, create a `.env` file in the project root
-
 
 ```
 CLIENT_ID='my_spotify_client_id'
@@ -52,9 +50,7 @@ You need to pass to your frontend the url of your backend with the login endpoin
 In this example I will use HTML.
 
 ```html
-<a href="http://localhost:8080/login">
-  On Spotify login
-</a>
+<a href="http://localhost:8080/login"> On Spotify login </a>
 ```
 
 After authentication you will be redirected to the callback url passed in your environment variables with the information needed to authenticate to Spotify services
